@@ -1,5 +1,5 @@
 ---
-title: "LearningJS-CH02"
+title: "LearningJS-CH03to7"
 tags:
   - Javascript
 comments: true
