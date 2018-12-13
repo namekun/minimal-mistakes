@@ -1,5 +1,5 @@
 ---
-title: "LearningJS-CH03 to ch7"
+title: "LearningJS-CH03 to 3.7"
 tags:
   - Javascript
   - learningJS
