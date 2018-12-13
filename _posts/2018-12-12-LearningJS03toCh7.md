@@ -1,7 +1,8 @@
 ---
-title: "LearningJS-CH03to7"
+title: "LearningJS-CH03 to ch7"
 tags:
   - Javascript
+  - learningJS
 comments: true
 ---
 
