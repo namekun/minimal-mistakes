@@ -1,0 +1,264 @@
+---
+title: "LearningJS-CH04.1-제어문의 기초 "
+tags:
+  - Javascript
+  - learningJS
+comments: true
+---
+
+## 크라운 앤 앵커 게임 구현하기
+
+우리는 크라운 앤 앵커 게임을 통해서 JS의 제어문을 배워보고자 한다.
+
+크라운 앤 앵커 게임의 규칙부터 알아보자. 평평한 면 위에 여섯 개의 사각형이 있고, 그 위에는 크라운, 앵커, 하트, 클럽, 스페이드, 다이아몬드를 나타내는 그림이 있다. 게임을 하는 선원은 사각형에 돈을 걸 수 있고, 돈을 건 다음에는 6면체의 주사위를 굴린다. 주사위가 사각형 번호에 일치하는 숫자에 멈추면, 선원은 거기 건 만큼의 돈을 딸 수 있다. 
+
+자 이제 규칙을 통해서 우리는 이것을 코드로 만들어보자.
+
+우선, 기본 조건부터 만들어보자. 시작조건, 그리고 종료조건이다. 
+
+기본적은 자본은 50으로 하고, 자본이 2배가 된다면, 게임을 종료한다. 만약 돈이 떨어질때까지 자본이 2배가 되지못하면, 자본을 다 잃을 때까지 게임은 종료되지 않는다.
+
+코드에서 사용할 변수, 그리고 동작들의 제한은 다음과 같은 것만 사용한다.
+
+```javascript
+funds = 50, bets = {}, hand = [] // 변수
+rand(1, 6) // m이상, n이하의 무작위 정수
+randFace() // 하트, 크라운등을 결정할 무작위 문자열
+bets["heart"] = 5, bets[randFace()] = 5 // 객체 프로퍼티 할당
+hand.push(randFace()) // 배열에 요소 추가
+// 그 외 간단한 사칙연산
+```
+
+조건의 따라 결정되는 부분은 다음과 같이 제한한다.
+
+```javascript
+funds>0, funds< 100 // 숫자비교
+totalBet === 7 // 일치 비교
+funds > 0 && funds < 100 // 논리연산자순서는
+```
+
+이제 우리는 코드를 직접적으로 구현해볼 것이다.
+
+### 1. while문
+
+우선 조건을 주고, 그 조건이 끝날때까지 계속 반복하는 `while`문을 사용한다. 조건은 `funds > 1 && funds < 100`이다.
+
+```javascript
+let funds = 50; // 시작조건
+
+while (funds > 1 && funds < 100){
+    // 돈을 건다.
+    
+    // 주사위를 굴린다.
+    
+    // 그림을 맞췄으면, 돈을 가져온다.
+}
+```
+
+### 2. 블록 문
+
+블록 문은 엄밀히 제어문은 아니지만, 같이 사용되는 것이다. 블록문은 문 여러 개를 중괄호로 묶은 것이며 자바스크립트에서는 이들을 하나의 단위로 취급한다. 다음과 같이 제어문 없이 블록 문만 사용해도 되지만, 별 의미를 갖진 않는다.
+
+```javascript
+{ // 블록 문
+    console.log("statement1");
+    console.log("statement2");
+}
+
+console.log("statement3" );
+```
+
+처음 두 `console.log`는 블록안에 있고, 유효한 문법이지만 별의미를 갖진않는다.
+
+블록문이 유용하게 사용되는 것은 제어문과 함께 사용된 때이다. 다음 예시를 보며 이해하자
+
+```javascript
+// while문에서 실행하는 루프는 블록문 전체를 실행하고 조건을 다시 테스트 한다. 
+// 2보 전진후 1보 후퇴
+
+step = 0;
+
+while(step < 100){
+    step += 2;
+    step -= 1;
+}
+```
+
+제어문에는 블록을 사용하는 것이 일반적이지만, 간단한 연산의 경우에는 꼭 그럴필요는 없다. 
+
+그러나 블록문을 사용하는 것이 보통 우리가 보고 구분하기에 편하고, 다음과 같은 실수도 방지할 수 있다.
+
+```javascript
+while(funds>1)
+    funds += 2;
+    funds -= 1;
+
+// 계산은 이렇게 된다.
+while(funds>1)
+    funds += 2;
+
+funds -= 1; // while문이 끝난 뒤에 실행
+```
+
+그리고 `if-else`문 처럼 두 개를 써야할 때, 꼭 둘다 블록문을 써주거나, 쓰지 않거나 해야한다.. 헷갈려...
+
+### 3. 보조함수
+
+크라운 앤 앵커를 구현하기 위해서는 보조 함수 2개가 필요하다. 아직 제대로 배우지 않았으니, 일단 가져다 쓰자.
+
+```javascript
+// m이상 n이하의 무작위 정수를 반환
+function rand(m, n) {
+    return m + Math.floor((n - m + 1) * Math.random());
+}
+
+// 크라운 앤 앵커 게임의 여섯가지 도형 중 무작위 하나를 반환하는 함수
+function randFace(){
+    return ["crown", "anchor", "heart", "spade", "club", "diamond"][rand(0, 5)];
+}
+```
+
+### 4. if-else
+
+이제 '돈을 거는' 행동을 만들어보자. 우리의 게임 주인공은 럭키가이라서 우연히 7펜스가 나오면, 주머니에 있는 모든 돈을 하트에 올인(...)한다. 그렇지 않다면, 아무렇게나 돈을 건다. 코드로 만들자.
+
+```javascript
+const bets = {
+    crown: 0,
+    anchor: 0,
+    heart: 0,
+    spade: 0,
+    club: 0,
+    diamond: 0
+};
+let totalBet = rand(1, funds);
+if (totalBet === 7) {
+    totalBet = funds;
+    bets.heart = totalBet;
+} else {
+    // 해당 판에 걸 돈을 분배
+}
+funds -= totalBet;
+```
+
+### 5. do-while 루프
+
+우리의 게임 주인공은 판돈을 걸때도 심상치 않은 사람이다! 오른손에 동전을 쥐고, 왼손으로 그 동전을 집지만, 세지는 않는다. 잡히는 대로 집어서 아무 사각형에 걸기 때문에, 때로는 동전 한 개를 걸 때도 있고 오른손에 쥔 동전 전부를 걸 때도 있다. 같은 사각형에 여러 번 걸 때도 있다. 
+
+이렇듯 무작위로 판돈을 나누는 행동을 우리는 또 구현해봐야한다...도대체 게임주인공은 무엇을 하는 사람인건가..
+
+`do-while`루프는 `while`과 다르게, 루프 바디를 최소 한 번을 실행하려고 할 때 사용한다. 시작하면서 조건을 검사하지않고 무조건 한 번 실행한 뒤에, 마지막에 검사한다.
+
+```javascript
+let remaining = totalBet;
+do{
+    let bet = rand(1, remaining);
+    let face = randFace();
+    bets[face] = bets[face] + bet;
+    remaining = remaining - bet;
+}while(remaining > 0);
+```
+
+### 6. for 루프
+
+이제 우리는 판돈까지 걸었다! 이제 주사위를 굴리면된다.
+
+`for`루프가 가장 잘 어울리는 부분은 바로 어떤 일을 정해진 숫자만큼 반복하려고 할 때, 특히 그 일을 지금 몇 번째 하는지 알아야할 때이다. 우리는 주사위를 정해진 숫자만큼 굴려야 하고, 이제 우리는 `for`루프를 써야한다 이말이다.
+
+`for`루프를 3 부분으로 나눠야한다. 초기화, 조건, 마지막 표현식이다. 
+
+```javascript
+const hand = [];
+for(let roll = 0; roll < 3; roll++){
+    hand.push(randFace());
+}
+```
+
+### 7. if 문
+
+자! 이제 돈도 걸고 주사위도 굴렸다! 남은 건 딴 돈을 가져오는 것!
+
+`hand`배열에는 무작위로 선택된 그림`face`가 3 개 있다. 따라서 `for`루프를 한 번 더 써서 이 중에 맞춘 것이 있는지 알아봐야한다. 이때 `if`문을 사용해주자.
+
+```javascript
+let winnings = 0;
+for(let die = 0; die < hand.length; die++){
+    let face = hand[die];
+    if(bets[face] > 0) winnings = winnings + bets[face];
+}
+funds = funds + winnings;
+```
+
+### 8. 하나로 합치기
+
+합치는 건 쉽다.
+
+```javascript
+// m이상 n이하의 무작위 정수를 반환
+function rand(m, n) {
+  return m + Math.floor((n - m + 1) * Math.random());
+}
+
+// 크라운 앤 앵커 게임의 여섯가지 도형 중 무작위 하나를 반환하는 함수
+function randFace() {
+  return ["crown", "anchor", "heart", "spade", "club", "diamond"][rand(0, 5)];
+}
+
+// 크라운 앤 앵커 게임과정을 js의 제어문으로 표현
+let funds = 50; // 시작조건
+let round = 0;
+
+while (funds > 1 && funds < 100) {
+  round++;
+  console.log(`round ${round}:`);
+  console.log(`\tstarting funds: ${funds}p`);
+  // 돈을 건다.
+  const bets = {
+    crown: 0,
+    anchor: 0,
+    heart: 0,
+    spade: 0,
+    club: 0,
+    diamond: 0
+  };
+  let totalBet = rand(1, funds);
+  if (totalBet === 7) {
+    totalBet = funds;
+    bets.heart = totalBet;
+  } else {
+    // 해당 판에 걸 돈을 분배
+    let remaining = totalBet;
+    do {
+      let bet = rand(1, remaining);
+      let face = randFace();
+      bets[face] = bets[face] + bet;
+      remaining = remaining - bet;
+    } while (remaining > 0);
+  }
+  funds -= totalBet;
+  console.log(
+    "\tbets: " +
+      Object.keys(bets)
+        .map(face => `${face}: ${bets[face]} pence`)
+        .join(",") +
+      `(total: ${totalBet} pence)`
+  );
+
+  // 주사위를 굴린다.
+  const hand = [];
+  for (let roll = 0; roll < 3; roll++) {
+    hand.push(randFace());
+  }
+  console.log(`\thand: ${hand.join(", ")}`);
+  // 그림을 맞췄으면, 돈을 가져온다.
+  let winnings = 0;
+  for (let die = 0; die < hand.length; die++) {
+    let face = hand[die];
+    if (bets[face] > 0) winnings = winnings + bets[face];
+  }
+  funds = funds + winnings;
+  console.log(`\twinnings: ${winnings}`);
+}
+console.log(`\tending funds: ${funds}`);
+```
+
