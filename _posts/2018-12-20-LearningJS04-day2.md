@@ -1,5 +1,5 @@
 ---
-title: "LearningJS-CH04.1-제어문의 기초 "
+title: "LearningJS-CH04.2-자바스크립트의 제어문 "
 tags:
   - Javascript
   - learningJS
