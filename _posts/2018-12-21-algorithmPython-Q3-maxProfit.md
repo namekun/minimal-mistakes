@@ -1,5 +1,5 @@
 ---
-title: "모두의 알고리즘 with python - 알고리즘 문제풀이 2- Find Max Profit!"
+title: "모두의 알고리즘 with python - 알고리즘 문제풀이 3 - Find Max Profit!"
 tags:
   - python
   - algorithm
