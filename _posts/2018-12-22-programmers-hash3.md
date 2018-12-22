@@ -110,5 +110,113 @@ def solution(clothes):
     return answer
 ```
 
+잘돌아간다.
 
+방-긋
 
+---
+
+다른 사람들은 어떻게 풀었는지 궁금해서 보는데 볼 때마다 상상초월이다.
+
+코드를 보자
+
+```python
+def solution(clothes):
+    from collections import Counter
+    from functools import reduce
+    cnt = Counter([kind for name, kind in clothes])
+    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+    return answer
+```
+
+개인적으로는 이렇게 보는걸 익숙치 않아서 그런지 모르겠지만, 다양한 연산을 한줄로 줄이는 것을 그렇게 좋아하지않는다.
+
+그렇지만 익숙해져야하고, 훨씬 이득이 되기에 위 풀이를 적용한 사람의 코드에 있는 모든 기술을 분석해보고 습득해야만 한다.
+
+### Counter
+
+Counter 모듈은 리스트에 있는 각 항목을 셀 수 있는 기능이다.
+
+Counter는 다음과 같이 사용한다.
+
+```python
+from collections import Counter
+```
+
+리스트를 하나 주어주고, `Counter` 메서드를 사용해보자.
+
+```python
+l = [1,2,3,4,5,3,4,5,2,3,4,5,23,3,4,3,4,5,2,2,34]
+
+Counter(l)
+
+# result
+# Counter({1: 1, 2: 4, 3: 5, 4: 5, 5: 4, 23: 1, 34: 1})
+```
+
+결과는 다음과 같이 나온다.
+
+물론 `String`도 이렇게 사용가능하다.
+
+```python
+random  = 'sselirjalijrlaijrliawenrlinvlaidlivjawlijer'
+Counter(random)
+
+# Counter({'a': 5,
+#          'd': 1,
+#          'e': 3,
+#          'i': 8,
+#          'j': 5,
+#          'l': 8,
+#          'n': 2,
+#          'r': 5,
+#          's': 2,
+#          'v': 2,
+#          'w': 2})
+```
+
+### reduce
+
+reduce는 요소 처음부터 순차적으로 지정된 함수로 처리해준다. 다음 예시는 리스트에 저장된 요소를 처음부터 하나씩 더한다.
+
+```python
+a = [1, 2, 3, 4, 5]
+from functools import reduce
+# 람다 표현식 맨 뒤에 사용할 리스트 a를 넣어준다.
+reduce(lambda x, y : x + y , a) 
+```
+
+`lambda x, y: x + y`와 같이 매개변수 두 개를 받아서 더한 결과를 반환한다. 즉, 리스트 요소의 합을 구한다. 참고로 reduce는 파이썬 3부터 내장 함수가 아니다. 따라서 from functools import reduce와 같이 functools 모듈에서 reduce 함수를 가져와야만 한다.
+
+그 이외로, 초기값도 넣어줄 수 있는데 초기값을 넣을때에는 사용할 리스트 뒤에 `, 초기값` 으로 넣어주면 된다.
+
+다음 그림을 통해서 어떻게 연산되는지 이해를 높이자.
+
+![](https://dojang.io/pluginfile.php/5358/mod_page/content/5/034004.png)
+
+### 코드 분석
+
+```python
+def solution(clothes):
+    from collections import Counter
+    from functools import reduce
+    cnt = Counter([kind for name, kind in clothes])
+    answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+    return answer
+```
+
+코드를 한줄 한줄 분석해보자.
+
+위의 `from~`은 그냥 모듈을 가져오는 코드이니 pass하고, 그 다음줄부터 보자.
+
+```python
+cnt = Counter([kind for name, kind in clothes])
+```
+
+`kind`라는 리스트에 `for`문으로 `(name, kind)`튜플 형식으로 데이터를 집어 넣는다. 그리고 그 데이터를 `Counter`함수로 개수를 세어준다.
+
+```python
+answer = reduce(lambda x, y: x*(y+1), cnt.values(), 1) - 1
+```
+
+다음 코드는 1이라는 초기값으로 시작해서 cnt의 값들을 하나하나 +1 을 해주고 곱셈해준다. 그 뒤에 아무것도 안입는 경우의 수 1을 빼준다.
