@@ -186,7 +186,7 @@ from functools import reduce
 reduce(lambda x, y : x + y , a) 
 ```
 
-`lambda x, y: x + y`와 같이 매개변수 두 개를 받아서 더한 결과를 반환한다. 즉, 리스트 요소의 합을 구한다. 참고로 reduce는 파이썬 3부터 내장 함수가 아니다. 따라서 from functools import reduce와 같이 functools 모듈에서 reduce 함수를 가져와야만 한다.
+`lambda x, y: x + y`와 같이 매개변수 두 개를 받아서 더한 결과를 반환한다. 즉, 리스트 요소의 합을 구한다. 참고로 reduce는 파이썬 3부터 내장 함수가 아니다. 따라서 `from functools import reduce`와 같이 `functools` 모듈에서 `reduce` 함수를 가져와야만 한다.
 
 그 이외로, 초기값도 넣어줄 수 있는데 초기값을 넣을때에는 사용할 리스트 뒤에 `, 초기값` 으로 넣어주면 된다.
 
