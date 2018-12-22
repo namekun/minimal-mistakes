@@ -73,11 +73,16 @@ def solution(phone_book):
 def solutionUseHash(phone_book):
     n = len(phone_book)
     answer = True
-
+    
+	# 전화번호부를 길이에 맞춰서 정렬한다.
     phone_book = sorted(phone_book, key=lambda x: len(x))
+    
+    # 인덱스에 맞춰서 뽑아낸다
     for i, phone1 in enumerate(phone_book):
         hash_map = {}
+        # 비교할 번호를 전화번호부에서 인덱스 다음부터 뽑아낸다.
         for phone2 in phone_book[i + 1:]:
+            # 해시 맵에 비교할 번호를 기준 번호의 길이만큼 자른 뒤 해당 숫자를 키로, 값은 해당 번호로 저장한다.
             hash_map[phone2[:len(phone1)]] = phone2
         if phone1 in hash_map:
             answer = False
@@ -87,7 +92,7 @@ def solutionUseHash(phone_book):
 
 처음보는 개념들이 많다. 정리해보자.
 
-#### enumerate
+### enumerate
 
 `enumerate`는 "열거하다"라는 뜻이다. 이 함수는 순서가 있는 자료형(리스트, 튜플, 문자열)을 입력으로 받아 인덱스 값을 포함하는 enumerate 객체를 리턴한다.
 
@@ -106,7 +111,7 @@ for i , name in enumerate(['body', 'foo', 'bar']):
 
 `for`문과 같이 반복되는 구간에서 객체가 현재 어느 위치에 있는지 알려주는 idx값이 필요하다면 `enumerate`함수를 사용하면 된다.
 
-#### Zip
+### Zip
 
 `zip`함수는 보통 `list` 여러개를 slice할 때 사용한다. 우선 여러 개의 `list`를 하나의 묶음으로 묶고, 이를 잘라내버린다. 다음 예시를 보며 이해를 높이자.
 
@@ -126,7 +131,7 @@ for x, y in zip(a, b):
 
 이런식으로 마치 김밥을 자르듯이 자르게 된다. `enumerate`랑은 비슷해보이지만, 예시만 그래서 그렇지 엄연히 다른 메서드이다.
 
-#### lambda
+### lambda
 
 람다는 쉽게 말하자면 '이름이 없는 함수'이다. 함수의 이름을 작성하지 않고도 바로 사용할 수 있다는 의미이다. 보통 람다함수는 한 번 사용하고 마는 함수를 사용할 때 효과적이고, 덜 지저분해진다는 장점을 가질 수 있다.
 
@@ -136,7 +141,7 @@ for x, y in zip(a, b):
 lambda x: 원하는 연산
 ```
 
-#### sorted
+### sorted
 
 `sorted(iterable)` 함수는 입력값을 정렬한 후 그 결과를 리스트로 리턴하는 함수이다. 다음과 같이 사용한다.
 
