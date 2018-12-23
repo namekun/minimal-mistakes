@@ -62,7 +62,7 @@ pop 장르는 3,100회 재생되었으며, pop 노래는 다음과 같습니다.
 hash_map = {장르 : [총 횟수, (인덱스, 재생횟수)]}
 ```
 
-이렇게 구현한 뒤에 내림차순으로 한번 더 정렬을 해준다.
+이렇게 구현한 뒤에 새로 `list`를 만들어 주고, 그 안에 딕셔너리에 데이터를 넣은 뒤에 내림차순으로 한번 더 정렬을 해준다.
 
 그 다음 내림차순으로 된 딕셔너리에서 총 플레이 횟수인 맨 앞을 `pop`으로 빼주고, 그 안에서도 또 내림차순으로 정렬한 뒤에 플레이 횟수가 높은 노래 2개의 인덱스를 `answer`에 더해준다.
 
@@ -73,10 +73,12 @@ hash_map = {장르 : [총 횟수, (인덱스, 재생횟수)]}
 이렇게 구현한 코드는 다음과 같다.
 
 ```python
+from operator import itemgetter
+
+
 def solution(genres, plays):
-    from operator import itemgetter
     answer = []
-    musics = dict()
+    musics = {}
 
     for i in range(0, len(genres)):
         if genres[i] not in musics:
@@ -91,8 +93,8 @@ def solution(genres, plays):
     temp = list(musics.values())
     # 기준은 해당 값의 처음값으로 하고, 내림차순으로 정렬한다.
     # itemgetter는 sort 하고자 하는 list의 item의 1번째 인덱스 기준으로 sort 하는 방식
-    temp.sort(key=itemgetter(1), reverse=True)
-    
+    temp.sort(key=itemgetter(0), reverse=True)
+
     # 가장 많이 플레이된 장르를 Pop한다.
     # 그리고 가장 많이 플레이된 두개의 노래를 고른다.
     while temp:
@@ -100,7 +102,7 @@ def solution(genres, plays):
 
         temp[0].pop(0)
 
-        # 플레이 많이된 순으로 정렬
+        # 플레이 횟수를 기준으로 많이된 순으로 내림차순 정렬
         temp[0].sort(key=itemgetter(1), reverse=True)
 
         # 가장 플레이 많이 된 두개의 노래를 answer에 append해준다.
