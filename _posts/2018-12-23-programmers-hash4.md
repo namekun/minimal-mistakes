@@ -1,5 +1,5 @@
 ---
-title: "프로그래머스 코딩테스트 연습 문제 - Hash - level 3 - 위장"
+title: "프로그래머스 코딩테스트 연습 문제 - Hash - level 3 - 베스트 앨범"
 tags:
   - python
   - algorithm
