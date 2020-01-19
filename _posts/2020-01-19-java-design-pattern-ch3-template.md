@@ -39,7 +39,7 @@ comments: true
         - connection(String info) : String
 
 *AbstractGameConnectionHelper.java*
-
+```java
     public abstract class AbstractGameConnectHelper {
     
         // 하위 클래스에서 재정의를 해야하기에 private 는 안됩니다.
@@ -91,9 +91,9 @@ comments: true
             return connection(decodedInfo);
         }
     }
-
+```
 *DefaultGameConnectHelper*
-
+```java
     public class DefaultGameConnection 
     		extends AbstractGameConnectHelper {
         @Override
@@ -121,9 +121,9 @@ comments: true
             return info;
         }
     }
-
+```
 *Main.java*
-
+```java
     import ch3_TemplateMethod.dp.AbstractGameConnectHelper;
     import ch3_TemplateMethod.dp.DefaultGameConnection;
     
@@ -134,7 +134,7 @@ comments: true
             helper.requestConnection("information");
         }
     }
-
+```
 ### 추가 요구사항
 
 - 보안 부분이 정부 정책에 의해 강화되었습니다.
@@ -144,7 +144,7 @@ comments: true
 아주 간단하다. 어차피 뭐..우리가 직접적인 기능은 구현하는게 아니니깐!
 
 *AbstractGameConnectHelper.java*
-
+```java
     ...
     
     //        String userName = "userName";
@@ -179,9 +179,9 @@ comments: true
         }
     
     ...
-
+```
 *DefaultGameConnection.java*
-
+```java
     ...
     
     @Override
@@ -199,3 +199,4 @@ comments: true
     
     
     ...
+```
