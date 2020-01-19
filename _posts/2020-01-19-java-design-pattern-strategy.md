@@ -52,32 +52,32 @@ comments: true
 - 무기에는 총과 검 두가지 종류가 있다.
 
 *weapon.interface - startegy*
-
+```interface
     public interface Weapon {
         // 공격 기능
         public void attack();
     }
-
+```
 *Gun.java*
-
+```java
     public class Gun implements Weapon {
         @Override
         public void attack(){
             System.out.println("빵야빵야");
         }
     }
-
+```
 *Sword.java*
-
+```java
     public class Sword implements Weapon {
         @Override
         public void attack(){
             System.out.println("휙휙!");
         }
     }
-
+```
 *GameCharacter.java*
-
+```java
     public class GameCharacter {
         // 접근점
         private Weapon weapon;
@@ -97,9 +97,9 @@ comments: true
             }
         }
     }
-
+```
 *Main.java*
-
+```java
     public class Main {
         public static void main(String[] args) {
             GameCharacter character = new GameCharacter();
@@ -112,7 +112,7 @@ comments: true
             character.attack();
         }
     }
-
+```
 ### 추가 요건
 
 - 무기에 도끼를 추가해주세요
@@ -120,10 +120,11 @@ comments: true
 아주 간단하다! Ax.java만 추가해주면 되는 것!
 
 *Ax.java*
-
+```java
     public class Ax implements Weapon {
         @Override
         public void attack(){
             System.out.println("도끼 공격!");
         }
     }
+```
