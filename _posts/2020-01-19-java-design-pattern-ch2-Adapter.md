@@ -1,5 +1,5 @@
 ---
-title: "java-design-pattern Adapter"
+title: "자바 디자인패턴 Adapter"
 tags:
   - Java
   - designPattern
