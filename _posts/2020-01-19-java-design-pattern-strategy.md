@@ -1,5 +1,5 @@
 ---
-title: "java-design-pattern-strategy"
+title: "java-design-pattern strategy"
 tags:
   - Java
   - designPattern
