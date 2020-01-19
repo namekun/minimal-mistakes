@@ -1,9 +1,3 @@
-취업후, 한동안 너무 바뻐서 못하다가 노트북을 새로샀음에도 불구하고 뭔가는 해야하지 않을까! 싶어서... 공부를 다시 시작하기로 했다.
-
-공부를 뭘 해야하나 싶다가 가장 부족하지만 가장 많이 사용하고 있는 Java 에 대해서 공부해보기로 한다.
-
-# Java Design Pattern First Class
-
 ---
 title: "java-design-pattern-strategy"
 tags:
@@ -13,6 +7,12 @@ tags:
 comments: true
 ---
 
+
+취업후, 한동안 너무 바뻐서 못하다가 노트북을 새로샀음에도 불구하고 뭔가는 해야하지 않을까! 싶어서... 공부를 다시 시작하기로 했다.
+
+공부를 뭘 해야하나 싶다가 가장 부족하지만 가장 많이 사용하고 있는 Java 에 대해서 공부해보기로 한다.
+
+# Java Design Pattern First Class
 
 ## Interface
 
