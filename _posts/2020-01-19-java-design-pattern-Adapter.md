@@ -33,6 +33,7 @@ comments: true
 ### Adapter Code
 
 *Adapter.interface*
+```java
 
     public interface Adapter {
     
@@ -41,9 +42,11 @@ comments: true
         public Float halfOf(Float f);
     
     }
+```    
 
 *AdapterImpl.java*
 
+```java
     public class AdapterImpl implements Adapter{
     
         @Override
@@ -59,9 +62,9 @@ comments: true
             return (float) Math.half(f.doubleValue());
         }
     }
-
+```
 *Math.java*
-
+```java
     public class Math {
         // 두배
         public static double twoTime(double num) {
@@ -73,9 +76,9 @@ comments: true
             return num / 2;
         }
     }
-
+```
 *Main.java*
-
+```java
     public class Main {
         public static void main(String[] args) {
             Adapter adapter = new AdapterImpl();
@@ -84,14 +87,14 @@ comments: true
             System.out.println( adapter.halfOf(100f));
         }
     }
-
+```
 ### 추가해봅시다.
 
 - 알고리즘 변경을 원합니다.
 - Math 클래스에 새롭게 두 배를 구할 수 있는 함수가 추기되었습니다. 새로 구현된 알고리즘을 이용하도록 프로그램을 수정해주세요
 
 *Math.java*
-
+```java
     public class Math {
         // 두배
         public static double twoTime(double num) {
@@ -108,9 +111,9 @@ comments: true
             return d * 2;
         }
     }
-
+```
 *AdapterImpl.java*
-
+```java
     public class AdapterImpl implements Adapter{
     
         @Override
@@ -126,3 +129,4 @@ comments: true
             return (float) Math.half(f.doubleValue());
         }
     }
+```
