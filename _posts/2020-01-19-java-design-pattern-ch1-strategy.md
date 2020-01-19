@@ -52,7 +52,7 @@ comments: true
 - 무기에는 총과 검 두가지 종류가 있다.
 
 *weapon.interface - startegy*
-```interface
+```java
     public interface Weapon {
         // 공격 기능
         public void attack();
