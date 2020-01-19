@@ -7,7 +7,9 @@ tags:
 comments: true
 ---
 
-## 3. Template Method Pattern
+## Java Design Pattern Third Class 
+
+### Template Method Pattern
 
 - 공통적인 프로세스를 묶어줄 수 있다.
 - 알고리즘의 구조를 메서드에 정의하고, 하위클래스에서 알고리즘 구조의 변경없이 알고리즘을 재정의하는 패턴
