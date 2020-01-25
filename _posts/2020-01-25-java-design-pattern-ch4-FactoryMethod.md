@@ -7,9 +7,8 @@ tags:
 comments: true
 ---
 
-## Java Design Pattern 4th Class
+## Java Design Pattern 4th Class - Factory Method
 
-### Factory Method Pattern
 
 ### 구조
 
@@ -50,9 +49,9 @@ comments: true
 ### 코드
 
 ---
-```java
-*Product.java*
 
+*Product.java*
+```java
     public abstract class Product {
         public abstract void use();
     }
