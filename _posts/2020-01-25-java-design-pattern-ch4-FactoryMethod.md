@@ -7,7 +7,9 @@ tags:
 comments: true
 ---
 
-## Factory Method Pattern
+## Java Design Pattern 4th Class
+
+### Factory Method Pattern
 
 ### 구조
 
